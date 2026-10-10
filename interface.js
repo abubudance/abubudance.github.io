@@ -1,4 +1,15 @@
 (() => {
+  const steamNotice = document.querySelector('.steam-notice');
+  document.addEventListener('click', event => {
+    if (!event.target.closest('[data-steam-notice]')) return;
+    event.preventDefault();
+    if (!steamNotice.open) steamNotice.showModal();
+  });
+  steamNotice.addEventListener('click', event => {
+    if (event.target !== steamNotice) return;
+    const bounds = steamNotice.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) steamNotice.close();
+  });
   const header = document.querySelector('.site-header');
   const menu = document.querySelector('.site-menu-toggle');
   const navigation = document.querySelector('.site-nav');

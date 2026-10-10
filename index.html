@@ -30,7 +30,7 @@
   <link rel="preload" href="assets/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" type="image/png" sizes="184x184" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/favicon.png">
-  <link rel="stylesheet" href="styles.css?v=release17">
+  <link rel="stylesheet" href="styles.css?v=release18">
 </head>
 <body>
   <header class="site-header" id="site-header">
@@ -64,7 +64,7 @@
           <span data-i18n="Upcoming">Upcoming</span>
           <span data-i18n="Online Co-op">Online Co-op</span>
         </div>
-        <a class="hero-button hero-button--wishlist" href="https://store.steampowered.com/search/?term=Christmasing%20Around" target="_blank" rel="noopener noreferrer"><img class="steam-icon" src="assets/steam_icon.png" alt=""> <span data-i18n="Wishlist">Wishlist</span></a>
+        <a class="hero-button hero-button--wishlist" href="#steam-coming-soon" data-steam-notice><img class="steam-icon" src="assets/steam_icon.png" alt=""> <span data-i18n="Wishlist">Wishlist</span></a>
         <a class="hero-button hero-button--presskit" href="mailto:hihi@abubudance.com?subject=Christmasing%20Around%20press%20kit"><span data-i18n="Presskit">Presskit</span></a>
       </div>
     </div>
@@ -143,14 +143,19 @@
     </footer>
   </main>
   <button class="back-to-top" type="button" aria-label="Go to top" hidden>↑</button>
+  <dialog class="steam-notice" id="steam-coming-soon" aria-labelledby="steam-notice-title" aria-describedby="steam-notice-message">
+    <h2 id="steam-notice-title">Christmasing Around</h2>
+    <p id="steam-notice-message" data-i18n="We're preparing the Steam Store page, it's coming up in around few days~~~~~~">We're preparing the Steam Store page, it's coming up in around few days~~~~~~</p>
+    <form method="dialog"><button class="game-action" type="submit" data-i18n="Got it!">Got it!</button></form>
+  </dialog>
   <canvas class="cursor-trail" id="cursor-trail" aria-hidden="true"></canvas>
   <img class="custom-cursor" id="custom-cursor" src="assets/cursor.png" alt="" aria-hidden="true">
-  <script src="headings.js?v=release17" defer></script>
-  <script src="language.js?v=release17" defer></script>
-  <script src="script.js?v=release17" defer></script>
-  <script src="interface.js?v=release17" defer></script>
-  <script src="sticker.js?v=release17" defer></script>
-  <script src="snow.js?v=release17" defer></script>
+  <script src="headings.js?v=release18" defer></script>
+  <script src="language.js?v=release18" defer></script>
+  <script src="script.js?v=release18" defer></script>
+  <script src="interface.js?v=release18" defer></script>
+  <script src="sticker.js?v=release18" defer></script>
+  <script src="snow.js?v=release18" defer></script>
 
 </body>
 </html>

@@ -1,5 +1,7 @@
 (() => {
   const VIETNAMESE = {
+  "We're preparing the Steam Store page, it's coming up in around few days~~~~~~": "Tụi tớ đang chuẩn bị trang Steam Store, sẽ ra mắt trong vài ngày tới~~~~~~",
+  "Got it!": "Hiểu rồi!",
   "Partner logos": "Logo đối tác",
   "video trailer": "video giới thiệu",
   "Copyright": "Bản quyền",
