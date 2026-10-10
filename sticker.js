@@ -252,6 +252,13 @@
     animateTo(expand ? 1 : hintPeel, expand ? Math.max(650, (1 - peel) * 1300) : 650);
   };
 
+  document.querySelector('.about-copy').addEventListener('click', event => {
+    if (!event.target.closest('.than-reveal')) return;
+    interacted = true;
+    corner = 'top-right';
+    animateTo(1, Math.max(650, (1 - peel) * 1300));
+  });
+
   const findCorner = (x, y) => {
     const horizontal = x < width * .32 ? 'left' : x > width * .68 ? 'right' : null;
     const vertical = y < height * .32 ? 'top' : y > height * .68 ? 'bottom' : null;

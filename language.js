@@ -93,7 +93,15 @@
     staticLabels.forEach(({ element, original }) => {
       const label = t(original);
       if (element.matches('.section-title')) window.renderDesignHeading(element, label);
-      else element.textContent = label;
+      else if (element.matches('.studio-intro')) {
+        const nameIndex = label.indexOf('Than');
+        const name = document.createElement('button');
+        name.type = 'button';
+        name.className = 'than-reveal';
+        name.textContent = 'Than';
+        name.setAttribute('aria-controls', 'about-sticker');
+        element.replaceChildren(label.slice(0, nameIndex), name, label.slice(nameIndex + 4));
+      } else element.textContent = label;
     });
     accessibleLabels.forEach(({ element, original }) => element.setAttribute('aria-label', t(original)));
     const toggle = document.querySelector('.language-toggle');

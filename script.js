@@ -14,6 +14,27 @@
   WHAT_WE_LOVE.forEach(value => {
     const card = document.createElement('article');
     card.className = 'value-item';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', t(value.title));
+    let popAnimation;
+    const pop = () => {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      popAnimation?.cancel();
+      popAnimation = card.animate([
+        { transform: 'scale(1)' },
+        { transform: 'scale(.94, .97)', offset: .2 },
+        { transform: 'scale(1.055, 1.035)', offset: .5 },
+        { transform: 'scale(.99)', offset: .78 },
+        { transform: 'scale(1)' }
+      ], { duration: 460, easing: 'ease-out' });
+    };
+    card.addEventListener('click', pop);
+    card.addEventListener('keydown', event => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      pop();
+    });
     const title = document.createElement('h3');
     title.textContent = t(value.title);
     const content = document.createElement('p');
