@@ -152,7 +152,7 @@
       tags: ['Party chaos', 'Christmas', 'Coming soon'],
       description: 'Christmasing Around is a chaotic online party game about making Christmas as messy and magical as possible. Play with your friends, cause some holiday havoc, and spread joy... or at least try to. Very fren slop!',
       buttons: [
-        { label: 'Wishlist on Steam', url: '#steam-coming-soon', theme: 'steam', steamNotice: true },
+        { label: 'Wishlist on Steam', url: 'https://store.steampowered.com/app/5433450/Christmasing_Around/', theme: 'steam', external: true },
         { label: 'Youtube', url: 'https://www.youtube.com/results?search_query=Christmasing+Around+Abubu+Dance', theme: 'youtube', external: true }
       ]
     },
@@ -317,7 +317,6 @@
       const theme = buttonThemes.has(requestedTheme) ? requestedTheme : inferredTheme;
       link.className = `game-action game-action--${theme}`;
       link.href = button.url;
-      if (button.steamNotice) link.dataset.steamNotice = "";
       link.textContent = t(button.label);
       if (theme === 'steam') {
         const icon = document.createElement('img');
