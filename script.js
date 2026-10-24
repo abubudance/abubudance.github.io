@@ -779,5 +779,40 @@
   requestAnimationFrame(() => carousel.classList.add('is-ready'));
   resizeTrail();
   addEventListener('resize', resizeTrail, { passive: true });
+  const newsletterDialog = document.querySelector('.newsletter-dialog');
+  const newsletterFrame = document.querySelector('.newsletter-response-frame');
+  const newsletterClose = document.querySelector('.newsletter-dialog__close');
+  const newsletterSuccessMessage = document.querySelector('#newsletter-dialog-message');
+  const newsletterErrorMessage = document.querySelector('#newsletter-dialog-error');
+  let newsletterSubmissionPending = false;
+  let newsletterResponseTimeout;
+  const finishNewsletterSubmission = success => {
+    if (!newsletterSubmissionPending) return;
+    newsletterSubmissionPending = false;
+    clearTimeout(newsletterResponseTimeout);
+    document.querySelectorAll('.newsletter-form button[type="submit"]').forEach(button => button.disabled = false);
+    document.querySelectorAll('.newsletter.is-submitting').forEach(newsletter => newsletter.classList.remove('is-submitting'));
+    newsletterSuccessMessage.hidden = !success;
+    newsletterErrorMessage.hidden = success;
+    newsletterDialog.showModal();
+  };
+  document.querySelectorAll('.newsletter-form').forEach(form => {
+    form.addEventListener('submit', () => {
+      newsletterSubmissionPending = true;
+      const submitButton = form.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      form.closest('.newsletter').classList.add('is-submitting');
+      clearTimeout(newsletterResponseTimeout);
+      newsletterResponseTimeout = setTimeout(() => finishNewsletterSubmission(false), 15000);
+    });
+  });
+  newsletterFrame.addEventListener('load', () => {
+    finishNewsletterSubmission(true);
+  });
+  newsletterFrame.addEventListener('error', () => finishNewsletterSubmission(false));
+  newsletterClose.addEventListener('click', () => newsletterDialog.close());
+  newsletterDialog.addEventListener('click', event => {
+    if (event.target === newsletterDialog) newsletterDialog.close();
+  });
   startScene();
 })();

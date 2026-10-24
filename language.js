@@ -18,6 +18,10 @@
   "Email Us": "Gửi Email",
   "Wishlist": "Wishlist",
   "Presskit": "Presskit",
+  "Get the latest Christmasing Around news": "Nhận tin mới nhất về Christmasing Around",
+  "Get studio news and updates": "Nhận tin mới nhất từ studio",
+  "Email address": "Địa chỉ email",
+  "Subscribe": "Đăng ký",
   "Partners In Crime": "Đồng đội chí cốt",
   "Our Games": "Game của tụi tớ",
   "What we love & yuck!": "Mê gì và ghét gì!",
@@ -103,7 +107,8 @@
         name.textContent = 'Than';
         name.setAttribute('aria-controls', 'about-sticker');
         element.replaceChildren(label.slice(0, nameIndex), name, label.slice(nameIndex + 4));
-      } else element.textContent = label;
+      } else if (element.hasAttribute('data-i18n-placeholder')) element.placeholder = label;
+      else element.textContent = label;
     });
     accessibleLabels.forEach(({ element, original }) => element.setAttribute('aria-label', t(original)));
     const toggle = document.querySelector('.language-toggle');
@@ -115,7 +120,7 @@
     document.dispatchEvent(new CustomEvent('studio-language-change'));
   };
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[data-i18n]').forEach(element => staticLabels.push({ element, original: element.dataset.i18n }));
+    document.querySelectorAll('[data-i18n], [data-i18n-placeholder]').forEach(element => staticLabels.push({ element, original: element.dataset.i18n || element.dataset.i18nPlaceholder }));
     document.querySelectorAll('[aria-label]').forEach(element => {
       const original = element.getAttribute('aria-label');
       if (VIETNAMESE[original]) accessibleLabels.push({ element, original });
